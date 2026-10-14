@@ -172,7 +172,10 @@ class DocChatNodes():
         messages = [system] + list(state["messages"])
         response = self.model_with_tools.invoke(messages)
 
-        return {"messages":[response]}
+        update = {"messages": [response]}
+        if isinstance(state["messages"][-1], HumanMessage):
+            update["retry_count"] = 0
+        return update
 
    
         
