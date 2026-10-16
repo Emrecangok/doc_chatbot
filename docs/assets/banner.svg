@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-label="DocChat: upload your docs, get answers with sources">
+  <title>DocChat: upload your docs, get answers with sources</title>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#14211C" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glowLogo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#16C172" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#16C172" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowGraph" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#1F6F55" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#1F6F55" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="logoFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#00854A"/>
+    </linearGradient>
+    <clipPath id="card"><rect width="1200" height="420" rx="24"/></clipPath>
+    <style>
+      .sans { font-family: "Segoe UI", -apple-system, "Helvetica Neue", Arial, sans-serif; }
+      .mono { font-family: Consolas, "SF Mono", Menlo, "DejaVu Sans Mono", monospace; }
+      .flow { fill: none; stroke: #3DDC84; stroke-width: 1.6; stroke-dasharray: 5 6; stroke-opacity: .85;
+              animation: dash 1.1s linear infinite; }
+      .loop { fill: none; stroke: #F5B342; stroke-width: 1.4; stroke-dasharray: 4 6; stroke-opacity: .8;
+              animation: dash 1.4s linear infinite; }
+      .node { fill: #0F1915; stroke: #2B3D35; stroke-width: 1.2; }
+      .node-hl { fill: #0F1915; stroke: #3DDC84; stroke-width: 1.4; }
+      .n-title { fill: #E8F2EC; font-size: 14px; font-weight: 600; }
+      .n-sub { fill: #3DDC84; font-size: 12px; }
+      .n-sub-muted { fill: #7F948A; font-size: 12px; }
+      .pulse { animation: pulse 2s ease-in-out infinite; }
+      @keyframes dash { to { stroke-dashoffset: -22; } }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+      @media (prefers-reduced-motion: reduce) { .flow, .loop, .pulse { animation: none; } }
+    </style>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <!-- background -->
+    <rect width="1200" height="420" fill="#0A100E"/>
+    <rect width="1200" height="420" fill="url(#grid)" opacity=".7"/>
+    <circle cx="100" cy="100" r="150" fill="url(#glowLogo)"/>
+    <circle cx="920" cy="210" r="260" fill="url(#glowGraph)"/>
+
+    <!-- sparkles -->
+    <circle cx="150" cy="38" r="1.6" fill="#3DDC84" opacity=".7"/>
+    <circle cx="178" cy="58" r="1.2" fill="#3DDC84" opacity=".5"/>
+    <circle cx="44" cy="150" r="1.4" fill="#3DDC84" opacity=".4"/>
+
+    <!-- logo -->
+    <rect x="64" y="60" width="76" height="76" rx="18" fill="url(#logoFill)"/>
+    <g transform="translate(83 76)" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 2h18l10 10v30H4z"/>
+      <path d="M22 2v10h10"/>
+      <path d="M11 24h14M11 32h9"/>
+    </g>
+    <g transform="translate(116 104)">
+      <rect width="30" height="24" rx="8" fill="#0A100E" stroke="#3DDC84" stroke-width="2.4"/>
+      <circle cx="9" cy="12" r="2" fill="#3DDC84"/>
+      <circle cx="15" cy="12" r="2" fill="#3DDC84"/>
+      <circle cx="21" cy="12" r="2" fill="#3DDC84"/>
+    </g>
+
+    <text x="166" y="110" class="sans" font-size="56" font-weight="700" fill="#F2F7F4">DocChat</text>
+    <text x="168" y="138" class="sans" font-size="18" fill="#8FA39A">chat with your documents</text>
+
+    <!-- headline -->
+    <text x="64" y="226" class="sans" font-size="40" font-weight="800" fill="#F2F7F4">Upload your docs.</text>
+    <text x="64" y="276" class="sans" font-size="40" font-weight="800" fill="#3DDC84">Get answers with sources.</text>
+
+    <text x="64" y="314" class="sans" font-size="16" fill="#8FA39A">Ask in plain language. Answers come only from your files,</text>
+    <text x="64" y="337" class="sans" font-size="16" fill="#8FA39A">checked for relevance, with the file and page cited.</text>
+
+    <!-- chips -->
+    <g class="mono" font-size="13" fill="#D7E5DD">
+      <g transform="translate(64 360)">
+        <rect width="132" height="30" rx="15" fill="#111C17" stroke="#24352D"/>
+        <circle cx="18" cy="15" r="4" fill="#3DDC84"/>
+        <text x="32" y="19.5">Agentic RAG</text>
+      </g>
+      <g transform="translate(206 360)">
+        <rect width="148" height="30" rx="15" fill="#111C17" stroke="#24352D"/>
+        <circle cx="18" cy="15" r="4" fill="#F5B342"/>
+        <text x="32" y="19.5">Cited sources</text>
+      </g>
+      <g transform="translate(364 360)">
+        <rect width="118" height="30" rx="15" fill="#111C17" stroke="#24352D"/>
+        <circle cx="18" cy="15" r="4" fill="#A78BFA"/>
+        <text x="32" y="19.5">LangGraph</text>
+      </g>
+      <g transform="translate(492 360)">
+        <rect width="104" height="30" rx="15" fill="#111C17" stroke="#24352D"/>
+        <circle cx="18" cy="15" r="4" fill="#60A5FA"/>
+        <text x="32" y="19.5">OpenAI</text>
+      </g>
+    </g>
+
+    <!-- graph caption -->
+    <text x="920" y="84" class="mono" font-size="12" fill="#5E7268" text-anchor="middle">agentic · graded · cited</text>
+
+    <!-- edges -->
+    <path class="flow" d="M810 145 H856"/>
+    <path class="flow" d="M990 145 H1026"/>
+    <path class="flow" d="M1095 170 V266"/>
+    <path class="flow" d="M1030 295 H994"/>
+    <path class="loop" d="M1040 270 C 1010 228, 950 214, 930 174"/>
+    <text x="990" y="226" class="mono" font-size="11" fill="#F5B342">rewrite</text>
+
+    <circle cx="856" cy="145" r="3" fill="#3DDC84"/>
+    <circle cx="1026" cy="145" r="3" fill="#3DDC84"/>
+    <circle cx="1095" cy="266" r="3" fill="#3DDC84"/>
+    <circle cx="994" cy="295" r="3" fill="#3DDC84"/>
+
+    <!-- nodes -->
+    <g class="mono">
+      <rect class="node" x="680" y="120" width="130" height="50" rx="10"/>
+      <text class="n-title" x="696" y="141">upload</text>
+      <text class="n-sub-muted" x="696" y="159">pdf · docx</text>
+
+      <rect class="node-hl" x="860" y="120" width="130" height="50" rx="10"/>
+      <text class="n-title" x="876" y="141">agent</text>
+      <text class="n-sub" x="876" y="159">tool calling</text>
+      <circle cx="977" cy="132" r="4" fill="#3DDC84"/>
+
+      <rect class="node" x="1030" y="120" width="130" height="50" rx="10"/>
+      <text class="n-title" x="1046" y="141">search</text>
+      <text class="n-sub" x="1046" y="159">chroma top-k</text>
+
+      <rect class="node" x="1030" y="270" width="130" height="50" rx="10"/>
+      <text class="n-title" x="1046" y="291">grade</text>
+      <text class="n-sub" x="1046" y="309">relevance</text>
+
+      <rect class="node-hl" x="860" y="270" width="130" height="50" rx="10"/>
+      <text class="n-title" x="876" y="291">answer</text>
+      <text class="n-sub" x="876" y="309">+ sources</text>
+      <circle class="pulse" cx="977" cy="282" r="4" fill="#3DDC84"/>
+    </g>
+
+    <!-- result pill -->
+    <g class="mono" transform="translate(660 342)">
+      <rect width="196" height="32" rx="16" fill="#0E2A1E" stroke="#1E7A52"/>
+      <text x="16" y="21" font-size="12.5" fill="#7CF0B2">✓ havacilik.pdf · p.3</text>
+    </g>
+
+    <!-- card border -->
+    <rect x=".75" y=".75" width="1198.5" height="418.5" rx="23.5" fill="none" stroke="#1F2E27" stroke-width="1.5"/>
+  </g>
+</svg>

@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" width="1200" height="540" role="img" aria-labelledby="t">
+  <title id="t">DocChat agent flow: START, ingest, agent, run_tools, grade_docs, then generate, rewrite or fallback, trim, END</title>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#14211C" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#1F6F55" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#1F6F55" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="spark" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#C8FFE0"/>
+      <stop offset="0.4" stop-color="#3DDC84"/>
+      <stop offset="1" stop-color="#3DDC84" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#3DDC84"/></marker>
+    <marker id="ah-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#6E847A"/></marker>
+    <marker id="ah-w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#F5B342"/></marker>
+    <clipPath id="card"><rect width="1200" height="540" rx="24"/></clipPath>
+    <style>
+      .sans { font-family: "Segoe UI", -apple-system, "Helvetica Neue", Arial, sans-serif; }
+      .mono { font-family: Consolas, "SF Mono", Menlo, "DejaVu Sans Mono", monospace; }
+      .e    { fill: none; stroke: #3DDC84; stroke-width: 1.6; stroke-dasharray: 5 6; animation: dash 1.1s linear infinite; }
+      .e-m  { fill: none; stroke: #6E847A; stroke-width: 1.4; stroke-dasharray: 4 6; animation: dash 1.6s linear infinite; }
+      .e-w  { fill: none; stroke: #F5B342; stroke-width: 1.5; stroke-dasharray: 4 6; animation: dash 1.3s linear infinite; }
+      .lbl  { fill: #8FA39A; font-size: 11.5px; }
+      .lbl-g { fill: #3DDC84; font-size: 11.5px; }
+      .lbl-w { fill: #F5B342; font-size: 11.5px; }
+      .n-llm  { fill: #0F2119; stroke: #3DDC84; stroke-width: 2; }
+      .n-tool { fill: #111A16; stroke: #6E847A; stroke-width: 1.6; stroke-dasharray: 5 4; }
+      .n-warn { fill: #241B0C; stroke: #F5B342; stroke-width: 2; }
+      .n-term { fill: #3DDC84; }
+      .tt  { fill: #E8F2EC; font-size: 12.5px; font-weight: 700; letter-spacing: .02em; }
+      .ts  { fill: #8FA39A; font-size: 10.5px; }
+      .tterm { fill: #0A100E; font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+      .ring { fill: none; stroke: #3DDC84; stroke-width: 2; animation: ring 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+      @keyframes dash { to { stroke-dashoffset: -22; } }
+      @keyframes ring { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(1.35); } }
+      @media (prefers-reduced-motion: reduce) { .e, .e-m, .e-w, .ring { animation: none; } .spark { display: none; } }
+    </style>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="1200" height="540" fill="#0A100E"/>
+    <rect width="1200" height="540" fill="url(#grid)" opacity=".7"/>
+    <circle cx="600" cy="270" r="420" fill="url(#glow)"/>
+
+    <text x="40" y="44" class="mono" font-size="12" fill="#5E7268">langgraph · agentic rag · one turn</text>
+
+    <!-- ===== edges ===== -->
+    <!-- START -> INGEST / AGENT -->
+    <path class="e" d="M92 240 L154 182" marker-end="url(#ah)"/>
+    <text class="lbl mono" x="78" y="196">has files</text>
+    <path class="e" d="M100 260 H276" marker-end="url(#ah)"/>
+    <text class="lbl mono" x="150" y="282">no files</text>
+    <!-- INGEST -> AGENT -->
+    <path class="e" d="M226 178 L287 226" marker-end="url(#ah)"/>
+
+    <!-- AGENT -> TRIM (no tool call) -->
+    <path class="e-m" d="M330 208 V72 H990 V214" marker-end="url(#ah-m)"/>
+    <text class="lbl mono" x="660" y="64" text-anchor="middle">no tool call · small talk / clarifying question</text>
+
+    <!-- AGENT <-> RUN_TOOLS -->
+    <path class="e" d="M382 260 H446" marker-end="url(#ah)"/>
+    <text class="lbl-g mono" x="414" y="284" text-anchor="middle">tool call</text>
+    <path class="e-m" d="M478 214 C 456 176, 384 176, 362 216" marker-end="url(#ah-m)"/>
+    <text class="lbl mono" x="420" y="168" text-anchor="middle">list_documents</text>
+
+    <!-- RUN_TOOLS -> GRADE -->
+    <path class="e" d="M552 260 H616" marker-end="url(#ah)"/>
+    <text class="lbl-g mono" x="584" y="250" text-anchor="middle">search</text>
+
+    <!-- GRADE -> GENERATE / FALLBACK / REWRITE -->
+    <path class="e" d="M714 232 L796 178" marker-end="url(#ah)"/>
+    <text class="lbl-g mono" x="742" y="196" text-anchor="end">relevant</text>
+    <path class="e-w" d="M712 290 L797 350" marker-end="url(#ah-w)"/>
+    <text class="lbl-w mono" x="770" y="306">retry limit</text>
+    <path class="e-w" d="M646 306 L608 377" marker-end="url(#ah-w)"/>
+    <text class="lbl-w mono" x="644" y="368">not relevant</text>
+
+    <!-- REWRITE -> RUN_TOOLS -->
+    <path class="e-w" d="M563 379 L525 308" marker-end="url(#ah-w)"/>
+    <text class="lbl-w mono" x="530" y="368" text-anchor="end">new query</text>
+
+    <!-- GENERATE / FALLBACK -> TRIM -->
+    <path class="e" d="M880 180 L953 233" marker-end="url(#ah)"/>
+    <path class="e" d="M879 349 L954 288" marker-end="url(#ah)"/>
+
+    <!-- TRIM -> END -->
+    <path class="e" d="M1034 260 H1088" marker-end="url(#ah)"/>
+
+    <!-- travelling spark along the happy path (hidden while inside a node) -->
+    <g class="spark">
+      <circle r="9" fill="url(#spark)">
+        <animateMotion dur="5.5s" repeatCount="indefinite" path="M70 260 H330 H500 H670 L840 150 L990 260 H1120"/>
+      </circle>
+    </g>
+
+    <!-- ===== nodes ===== -->
+    <g class="mono">
+      <circle class="n-term" cx="70" cy="260" r="30"/>
+      <text class="tterm" x="70" y="264" text-anchor="middle">START</text>
+
+      <circle class="n-tool" cx="190" cy="150" r="46"/>
+      <text class="tt" x="190" y="148" text-anchor="middle">INGEST</text>
+      <text class="ts" x="190" y="164" text-anchor="middle">docling</text>
+
+      <circle class="ring" cx="330" cy="260" r="52"/>
+      <circle class="n-llm" cx="330" cy="260" r="52"/>
+      <text class="tt" x="330" y="258" text-anchor="middle">AGENT</text>
+      <text class="ts" x="330" y="274" text-anchor="middle">gpt + tools</text>
+
+      <circle class="n-tool" cx="500" cy="260" r="52"/>
+      <text class="tt" x="500" y="258" text-anchor="middle">RUN_TOOLS</text>
+      <text class="ts" x="500" y="274" text-anchor="middle">ToolNode</text>
+
+      <circle class="n-llm" cx="670" cy="260" r="52"/>
+      <text class="tt" x="670" y="258" text-anchor="middle">GRADE</text>
+      <text class="ts" x="670" y="274" text-anchor="middle">1 llm call</text>
+
+      <circle class="n-llm" cx="585" cy="420" r="46"/>
+      <text class="tt" x="585" y="418" text-anchor="middle">REWRITE</text>
+      <text class="ts" x="585" y="434" text-anchor="middle">max 2×</text>
+
+      <circle class="n-llm" cx="840" cy="150" r="50"/>
+      <text class="tt" x="840" y="148" text-anchor="middle">GENERATE</text>
+      <text class="ts" x="840" y="164" text-anchor="middle">+ sources</text>
+
+      <circle class="n-warn" cx="840" cy="380" r="50"/>
+      <text class="tt" x="840" y="378" text-anchor="middle">FALLBACK</text>
+      <text class="ts" x="840" y="394" text-anchor="middle">not in docs</text>
+
+      <circle class="n-tool" cx="990" cy="260" r="44"/>
+      <text class="tt" x="990" y="258" text-anchor="middle">TRIM</text>
+      <text class="ts" x="990" y="274" text-anchor="middle">keep last 6</text>
+
+      <circle class="n-term" cx="1120" cy="260" r="30"/>
+      <text class="tterm" x="1120" y="264" text-anchor="middle">END</text>
+    </g>
+
+    <!-- legend -->
+    <g class="sans" font-size="12.5" fill="#8FA39A" transform="translate(40 500)">
+      <circle cx="7" cy="-4" r="7" fill="#3DDC84"/><text x="22" y="0">start / end</text>
+      <circle cx="137" cy="-4" r="7" fill="#0F2119" stroke="#3DDC84" stroke-width="2"/><text x="152" y="0">LLM call</text>
+      <circle cx="252" cy="-4" r="7" fill="#111A16" stroke="#6E847A" stroke-width="1.6" stroke-dasharray="3 2"/><text x="267" y="0">tool / state</text>
+      <circle cx="387" cy="-4" r="7" fill="#241B0C" stroke="#F5B342" stroke-width="2"/><text x="402" y="0">fallback</text>
+      <path d="M492 -4 h26" stroke="#F5B342" stroke-width="1.5" stroke-dasharray="4 4"/><text x="526" y="0">retry loop</text>
+    </g>
+
+    <rect x=".75" y=".75" width="1198.5" height="538.5" rx="23.5" fill="none" stroke="#1F2E27" stroke-width="1.5"/>
+  </g>
+</svg>
